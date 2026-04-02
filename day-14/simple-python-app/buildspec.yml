@@ -18,4 +18,4 @@ phases:
       - docker push "$DOCKER_REGISTRY_USERNAME/simple-python-flask-app:latest"
   post_build:
     commands:
-      - echo "Build completed successfully!"
+      - echo "Build completed successfully! to test the code pipeline"
