@@ -7,15 +7,15 @@ phases:
   pre_build:
     commands:
       - echo "logging into Docker HUB"
-      - echo "$DOCKER_REGISTRY_PASSWORD" | docker login -u "rajugijo" --password-stdin "docker.io"
+      - echo "$DOCKER_REGISTRY_PASSWORD" | docker login -u "$DOCKER_REGISTRY_USERNAME" --password-stdin "docker.io"
       - echo "Installing dependencies..."
       - pip install -r day-14/simple-python-app/requirements.txt
   build:
     commands:
       - echo "Building DOCKER Image"
       - cd day-14/simple-python-app/
-      - docker build -t "rajugijo/simple-python-flask-app:latest" .
-      - docker push "rajugijo/simple-python-flask-app:latest"
+      - docker build -t "$DOCKER_REGISTRY_USERNAME/simple-python-flask-app:latest" .
+      - docker push "$DOCKER_REGISTRY_USERNAME/simple-python-flask-app:latest"
   post_build:
     commands:
       - echo "Build completed successfully!"
